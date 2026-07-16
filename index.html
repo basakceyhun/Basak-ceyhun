@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Başak & Ceyhun</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+
+background:#F8F5EF;
+font-family:Poppins,sans-serif;
+display:flex;
+justify-content:center;
+padding:30px;
+
+}
+
+.card{
+
+width:100%;
+max-width:550px;
+
+background:white;
+
+border-radius:25px;
+
+padding:35px;
+
+box-shadow:0 10px 40px rgba(0,0,0,.1);
+
+text-align:center;
+
+}
+
+h1{
+
+font-family:'Cormorant Garamond',serif;
+
+font-size:42px;
+
+color:#a88445;
+
+margin-bottom:8px;
+
+}
+
+.date{
+
+font-size:18px;
+
+color:#777;
+
+margin-bottom:25px;
+
+}
+
+.message{
+
+line-height:28px;
+
+margin-bottom:30px;
+
+color:#555;
+
+}
+
+.upload{
+
+border:2px dashed #d4b56a;
+
+padding:35px;
+
+border-radius:18px;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.upload:hover{
+
+background:#fffaf0;
+
+}
+
+input{
+
+display:none;
+
+}
+
+button{
+
+margin-top:25px;
+
+background:#b9934d;
+
+border:none;
+
+padding:15px 35px;
+
+border-radius:12px;
+
+color:white;
+
+font-size:17px;
+
+cursor:pointer;
+
+width:100%;
+
+}
+
+button:hover{
+
+background:#a88445;
+
+}
+
+.progress{
+
+margin-top:25px;
+
+height:14px;
+
+background:#eee;
+
+border-radius:30px;
+
+overflow:hidden;
+
+display:none;
+
+}
+
+.bar{
+
+height:100%;
+
+width:0%;
+
+background:#b9934d;
+
+transition:.3s;
+
+}
+
+.success{
+
+display:none;
+
+margin-top:25px;
+
+font-size:20px;
+
+color:#3d8b40;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+<h1>Başak & Ceyhun</h1>
+
+<div class="date">
+13.09.2026
+</div>
+
+<div class="message">
+
+Mutlu günümüzde çektiğiniz fotoğraf ve videoları bizimle paylaşmanız bizi çok mutlu eder.
+
+🤍
+
+</div>
+
+<label class="upload">
+
+📸
+
+<br><br>
+
+Fotoğraf veya Video Seç
+
+<input id="files" type="file" multiple accept="image/*,video/*">
+
+</label>
+
+<button onclick="uploadFiles()">
+
+Yüklemeyi Başlat
+
+</button>
+
+<div class="progress">
+
+<div class="bar"></div>
+
+</div>
+
+<div class="success">
+
+❤️
+
+<br><br>
+
+Teşekkür ederiz.
+
+Anılarınız bize ulaştı.
+
+</div>
+
+</div>
+
+<script>
+
+const scriptURL="BURAYA_APPS_SCRIPT_URL_GELECEK";
+
+function uploadFiles(){
+
+alert("Bu bölüm bir sonraki adımda Google Drive ile bağlanacak.");
+
+}
+
+</script>
+
+</body>
+
+</html>

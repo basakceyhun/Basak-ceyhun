@@ -1,130 +1,263 @@
-const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbw6UokA3WNc57xHd2-lSkhsfti6n0WQhu9OR42YsSrdzRg9arlrwASrGM4dGZGoD5Nm3A/exec";
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-const fileInput = document.getElementById("fileInput");
-const preview = document.getElementById("preview");
-const uploadButton = document.getElementById("uploadButton");
-const progress = document.getElementById("progress");
-const statusText = document.getElementById("status");
+body{
+    font-family:'Cormorant Garamond',serif;
+    background:#f8f5ef;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow-x:hidden;
+    color:#4d433d;
+    position:relative;
+}
 
-let selectedFiles = [];
+.background-flower{
+    position:fixed;
+    width:420px;
+    height:420px;
+    opacity:.10;
+    pointer-events:none;
+    background-repeat:no-repeat;
+    background-size:contain;
+    z-index:0;
+}
 
-fileInput.addEventListener("change", function () {
+.top-left{
+    top:-70px;
+    left:-70px;
+    background-image:url("https://images.unsplash.com/photo-1520763185298-1b434c919102?auto=format&fit=crop&w=800&q=80");
+}
 
-    preview.innerHTML = "";
-    selectedFiles = [...this.files];
+.bottom-right{
+    bottom:-70px;
+    right:-70px;
+    transform:rotate(180deg);
+    background-image:url("https://images.unsplash.com/photo-1520763185298-1b434c919102?auto=format&fit=crop&w=800&q=80");
+}
 
-    if (selectedFiles.length === 0) {
-        return;
-    }
+.container{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    padding:40px 15px;
+    position:relative;
+    z-index:2;
+}
 
-    selectedFiles.forEach(file => {
+.card{
+    width:100%;
+    max-width:720px;
+    background:white;
+    border-radius:25px;
+    padding:50px;
+    box-shadow:0 20px 60px rgba(0,0,0,.12);
+    text-align:center;
+}
 
-        const reader = new FileReader();
+.names{
+    font-family:'Great Vibes',cursive;
+    font-size:70px;
+    font-weight:400;
+    color:#74624d;
+}
 
-        reader.onload = function (e) {
+.names span{
+    display:block;
+    font-size:45px;
+    margin:10px 0;
+}
 
-            const div = document.createElement("div");
-            div.className = "preview-item";
+.date{
+    margin-top:12px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    font-size:17px;
+    color:#9d8669;
+}
 
-            if (file.type.startsWith("image")) {
+.divider{
+    width:130px;
+    height:2px;
+    background:#d8c3a5;
+    margin:30px auto;
+}
 
-                div.innerHTML =
-                    `<img src="${e.target.result}" alt="">`;
+.welcome-text{
+    line-height:1.9;
+    font-size:22px;
+    margin-bottom:40px;
+}
 
-            } else {
+.upload-box{
+    border:2px dashed #d8c3a5;
+    border-radius:20px;
+    padding:30px;
+}
 
-                div.innerHTML =
-                    `<video src="${e.target.result}" controls></video>`;
+#fileInput{
+    display:none;
+}
 
-            }
+.select-button{
+    display:inline-block;
+    background:#8e7456;
+    color:white;
+    padding:15px 35px;
+    border-radius:50px;
+    cursor:pointer;
+    font-size:20px;
+    transition:.3s;
+}
 
-            preview.appendChild(div);
+.select-button:hover{
+    background:#725a41;
+}
 
-        };
+#preview{
+    margin-top:30px;
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(120px,1fr));
+    gap:15px;
+}
 
-        reader.readAsDataURL(file);
+.preview-item{
+    position:relative;
+}
 
-    });
+.preview-item img,
+.preview-item video{
+    width:100%;
+    height:120px;
+    object-fit:cover;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+#uploadButton{
+    margin-top:30px;
+    width:100%;
+    padding:18px;
+    border:none;
+    border-radius:50px;
+    background:#4f6b4f;
+    color:white;
+    font-size:21px;
+    cursor:pointer;
+    transition:.3s;
+}
 
-});
+#uploadButton:hover{
+    background:#3f563f;
+}
 
-uploadButton.addEventListener("click", async function () {
+.progress-area{
+    margin-top:30px;
+}
 
-    if (selectedFiles.length === 0) {
+.progress-bar{
+    width:100%;
+    height:12px;
+    background:#ece7df;
+    border-radius:50px;
+    overflow:hidden;
+}
 
-        alert("Lütfen önce fotoğraf veya video seçin.");
+#progress{
+    width:0%;
+    height:100%;
+    background:linear-gradient(90deg,#9fbf9f,#4f6b4f);
+    transition:width .3s ease;
+}
 
-        return;
+#status{
+    margin-top:15px;
+    font-size:18px;
+    color:#6b5a4b;
+    min-height:24px;
+}
 
-    }
+.footer{
+    margin-top:45px;
+    font-size:20px;
+    color:#8c765d;
+    line-height:1.8;
+}
 
-    uploadButton.disabled = true;
+button{
+    font-family:'Cormorant Garamond',serif;
+}
 
-    progress.style.width = "0%";
+@media(max-width:768px){
 
-    statusText.innerHTML = "Yükleme başlıyor...";
+.card{
+    padding:30px 20px;
+}
 
-    let uploaded = 0;
-    for (const file of selectedFiles) {
+.names{
+    font-size:52px;
+}
 
-        try {
+.names span{
+    font-size:35px;
+}
 
-            const base64 = await fileToBase64(file);
+.welcome-text{
+    font-size:19px;
+}
 
-            await fetch(WEB_APP_URL, {
-                method: "POST",
-                body: JSON.stringify({
-                    name: file.name,
-                    type: file.type,
-                    file: base64
-                })
-            });
+.select-button{
+    width:100%;
+}
 
-            uploaded++;
+#uploadButton{
+    font-size:19px;
+}
 
-            const percent = Math.round((uploaded / selectedFiles.length) * 100);
+.background-flower{
+    width:250px;
+    height:250px;
+}
 
-            progress.style.width = percent + "%";
+#preview{
+    grid-template-columns:repeat(2,1fr);
+}
 
-            statusText.innerHTML =
-                `${uploaded} / ${selectedFiles.length} dosya yüklendi`;
+.preview-item img,
+.preview-item video{
+    height:140px;
+}
 
-        } catch (e) {
+}
 
-            console.error(e);
+@media(max-width:480px){
 
-            statusText.innerHTML =
-                "Bir dosya yüklenirken hata oluştu.";
+.names{
+    font-size:44px;
+}
 
-        }
+.date{
+    font-size:15px;
+}
 
-    }
+.welcome-text{
+    font-size:17px;
+}
 
-    uploadButton.disabled = false;
+.card{
+    border-radius:18px;
+}
 
-    statusText.innerHTML =
-        "🎉 Tüm anılar başarıyla yüklendi. Teşekkür ederiz!";
+.upload-box{
+    padding:20px;
+}
 
-});
-
-function fileToBase64(file){
-
-    return new Promise((resolve,reject)=>{
-
-        const reader = new FileReader();
-
-        reader.onload=()=>{
-
-            resolve(
-                reader.result.split(",")[1]
-            );
-
-        };
-
-        reader.onerror=reject;
-
-        reader.readAsDataURL(file);
-
-    });
+.preview-item img,
+.preview-item video{
+    height:120px;
+}
 
 }

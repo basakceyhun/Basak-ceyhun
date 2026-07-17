@@ -8,18 +8,16 @@ const statusText = document.getElementById("status");
 
 let selectedFiles = [];
 
-fileInput.addEventListener("change", function () {
+fileInput.addEventListener("change", () => {
 
     preview.innerHTML = "";
-    selectedFiles = [...this.files];
-
-    if (selectedFiles.length === 0) return;
+    selectedFiles = Array.from(fileInput.files);
 
     selectedFiles.forEach(file => {
 
         const reader = new FileReader();
 
-        reader.onload = function (e) {
+        reader.onload = e => {
 
             const div = document.createElement("div");
             div.className = "preview-item";
@@ -49,7 +47,6 @@ uploadButton.addEventListener("click", async () => {
     if (selectedFiles.length === 0) {
 
         alert("Lütfen önce fotoğraf veya video seçin.");
-
         return;
 
     }
@@ -58,9 +55,8 @@ uploadButton.addEventListener("click", async () => {
 
     progress.style.width = "0%";
 
-    statusText.innerHTML = "Yükleme başlıyor...";
-
     let uploaded = 0;
+
     try {
 
         for (const file of selectedFiles) {
@@ -101,7 +97,7 @@ uploadButton.addEventListener("click", async () => {
 
             if (!result.success) {
 
-                throw new Error(result.error || "Yükleme başarısız.");
+                throw new Error(result.error);
 
             }
 
@@ -110,31 +106,27 @@ uploadButton.addEventListener("click", async () => {
             const percent = Math.round((uploaded / selectedFiles.length) * 100);
 
             progress.style.width = percent + "%";
-            .length} dosya yüklendi`;
+
+            statusText.innerHTML = `${uploaded} / ${selectedFiles.length} dosya yüklendi`;
 
         }
 
-        statusText.innerHTML =
-            "🎉 Tüm fotoğraf ve videolar başarıyla yüklendi. Teşekkür ederiz.";
-
-        progress.style.width = "100%";
+        statusText.innerHTML = "🎉 Tüm dosyalar başarıyla yüklendi. Teşekkür ederiz.";
 
         fileInput.value = "";
+
         preview.innerHTML = "";
+
         selectedFiles = [];
 
-    } catch (error) {
+    } catch (err) {
 
-        console.error(error);
+        console.error(err);
 
-        statusText.innerHTML =
-            "❌ Yükleme sırasında hata oluştu.";
+        statusText.innerHTML = "❌ Yükleme sırasında hata oluştu.";
 
     }
 
     uploadButton.disabled = false;
 
 });
-
-            statusText.innerHTML =
-                `${uploaded} / ${selectedFiles

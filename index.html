@@ -1,382 +1,87 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-body{
+<title>Başak & Ceyhun | Anılarınızı Paylaşın</title>
 
-    font-family:'Cormorant Garamond',serif;
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    background:#f8f5ef;
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
 
-    min-height:100vh;
+<link rel="stylesheet" href="style.css">
 
-    display:flex;
-    justify-content:center;
-    align-items:center;
+</head>
 
-    overflow-x:hidden;
+<body>
 
-    color:#4d433d;
+<div class="background-flower top-left"></div>
+<div class="background-flower bottom-right"></div>
 
-    position:relative;
-}
+<div class="container">
 
-.background-flower{
+<div class="card">
 
-    position:fixed;
+<h1 class="names">
+Başak
+<span>&</span>
+Ceyhun
+</h1>
 
-    width:420px;
-    height:420px;
+<p class="date">
+13 Eylül 2026
+</p>
 
-    opacity:.10;
+<div class="divider"></div>
 
-    pointer-events:none;
+<p class="welcome-text">
+Bu özel günümüzde bizimle olduğunuz için teşekkür ederiz.
+Çektiğiniz fotoğraf ve videoları aşağıdan yükleyerek
+bu güzel anıları birlikte ölümsüzleştirebilirsiniz.
+</p>
 
-    background-repeat:no-repeat;
-    background-size:contain;
+<div class="upload-box">
 
-    z-index:0;
-}
+<input
+type="file"
+id="fileInput"
+multiple
+accept="image/*,video/*">
 
-.top-left{
+<label for="fileInput" class="select-button">
+Fotoğraf / Video Seç
+</label>
 
-    top:-70px;
-    left:-70px;
+<div id="preview"></div>
 
-    background-image:url("https://images.unsplash.com/photo-1520763185298-1b434c919102?auto=format&fit=crop&w=800&q=80");
-}
+<button id="uploadButton">
+Anılarınızı Paylaşın
+</button>
 
-.bottom-right{
+<div class="progress-area">
 
-    bottom:-70px;
-    right:-70px;
+<div class="progress-bar">
+<div id="progress"></div>
+</div>
 
-    transform:rotate(180deg);
+<p id="status"></p>
 
-    background-image:url("https://images.unsplash.com/photo-1520763185298-1b434c919102?auto=format&fit=crop&w=800&q=80");
-}
+</div>
 
-.container{
+</div>
 
-    width:100%;
+<div class="footer">
+Sevgiyle ❤️<br>
+Başak & Ceyhun
+</div>
 
-    display:flex;
+</div>
 
-    justify-content:center;
+</div>
 
-    padding:40px 15px;
+<script src="script.js"></script>
 
-    position:relative;
-
-    z-index:2;
-}
-
-.card{
-
-    width:100%;
-    max-width:720px;
-
-    background:white;
-
-    border-radius:25px;
-
-    padding:50px;
-
-    box-shadow:
-
-    0 20px 60px rgba(0,0,0,.12);
-
-    text-align:center;
-}
-
-.names{
-
-    font-family:'Great Vibes',cursive;
-
-    font-size:70px;
-
-    font-weight:400;
-
-    color:#74624d;
-}
-
-.names span{
-
-    display:block;
-
-    font-size:45px;
-
-    margin:10px 0;
-}
-
-.date{
-
-    margin-top:12px;
-
-    letter-spacing:3px;
-
-    text-transform:uppercase;
-
-    font-size:17px;
-
-    color:#9d8669;
-}
-
-.divider{
-
-    width:130px;
-
-    height:2px;
-
-    background:#d8c3a5;
-
-    margin:30px auto;
-}
-
-.welcome-text{
-
-    line-height:1.9;
-
-    font-size:22px;
-
-    margin-bottom:40px;
-}
-
-.upload-box{
-
-    border:2px dashed #d8c3a5;
-
-    border-radius:20px;
-
-    padding:30px;
-}
-
-#fileInput{
-
-    display:none;
-}
-
-.select-button{
-
-    display:inline-block;
-
-    background:#8e7456;
-
-    color:white;
-
-    padding:15px 35px;
-
-    border-radius:50px;
-
-    cursor:pointer;
-
-    font-size:20px;
-
-    transition:.3s;
-}
-
-.select-button:hover{
-
-    background:#725a41;
-}
-
-#preview{
-
-    margin-top:30px;
-
-    display:grid;
-
-    grid-template-columns:repeat(auto-fill,minmax(120px,1fr));
-
-    gap:15px;
-}
-
-.preview-item{
-
-    position:relative;
-}
-
-.preview-item img,
-.preview-item video{
-
-    width:100%;
-
-    height:120px;
-
-    object-fit:cover;
-
-    border-radius:12px;
-
-    box-shadow:0 5px 15px rgba(0,0,0,.1);
-}
-#uploadButton{
-
-    margin-top:30px;
-
-    width:100%;
-
-    padding:18px;
-
-    border:none;
-
-    border-radius:50px;
-
-    background:#4f6b4f;
-
-    color:white;
-
-    font-size:21px;
-
-    cursor:pointer;
-
-    transition:.3s;
-}
-
-#uploadButton:hover{
-
-    background:#3f563f;
-}
-
-.progress-area{
-
-    margin-top:30px;
-}
-
-.progress-bar{
-
-    width:100%;
-
-    height:12px;
-
-    background:#ece7df;
-
-    border-radius:50px;
-
-    overflow:hidden;
-}
-
-#progress{
-
-    width:0%;
-
-    height:100%;
-
-    background:linear-gradient(90deg,#9fbf9f,#4f6b4f);
-
-    transition:width .3s ease;
-}
-
-#status{
-
-    margin-top:15px;
-
-    font-size:18px;
-
-    color:#6b5a4b;
-
-    min-height:24px;
-}
-
-.footer{
-
-    margin-top:45px;
-
-    font-size:20px;
-
-    color:#8c765d;
-
-    line-height:1.8;
-}
-
-button{
-
-    font-family:'Cormorant Garamond',serif;
-}
-
-@media(max-width:768px){
-
-.card{
-
-    padding:30px 20px;
-}
-
-.names{
-
-    font-size:52px;
-}
-
-.names span{
-
-    font-size:35px;
-}
-
-.welcome-text{
-
-    font-size:19px;
-}
-
-.select-button{
-
-    width:100%;
-}
-
-#uploadButton{
-
-    font-size:19px;
-}
-
-.background-flower{
-
-    width:250px;
-    height:250px;
-}
-
-#preview{
-
-    grid-template-columns:repeat(2,1fr);
-}
-
-.preview-item img,
-.preview-item video{
-
-    height:140px;
-}
-
-}
-
-@media(max-width:480px){
-
-.names{
-
-    font-size:44px;
-}
-
-.date{
-
-    font-size:15px;
-}
-
-.welcome-text{
-
-    font-size:17px;
-}
-
-.card{
-
-    border-radius:18px;
-}
-
-.upload-box{
-
-    padding:20px;
-}
-
-.preview-item img,
-.preview-item video{
-
-    height:120px;
-}
-
-}
+</body>
+</html>

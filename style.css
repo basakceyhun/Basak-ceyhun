@@ -1,3 +1,46 @@
-body{font-family:Arial;background:#f8f5ef;display:flex;justify-content:center;padding:40px}
-.card{background:#fff;padding:30px;border-radius:16px;max-width:500px;width:100%;text-align:center}
-button{padding:12px 20px;margin-top:20px}.progress{height:10px;background:#ddd;margin-top:15px}.bar{height:10px;width:0;background:#4f6b4f}
+body {
+    font-family: Arial, sans-serif;
+    background: #f8f5ef;
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+}
+
+.card {
+    background: #fff;
+    padding: 30px;
+    border-radius: 16px;
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+}
+
+button {
+    padding: 12px 20px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 10px;
+    background: #4f6b4f;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+.progress {
+    height: 10px;
+    background: #ddd;
+    margin-top: 15px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.bar {
+    height: 10px;
+    width: 0;
+    background: #4f6b4f;
+    transition: width 0.3s ease;
+}

@@ -110,6 +110,31 @@ uploadButton.addEventListener("click", async () => {
             const percent = Math.round((uploaded / selectedFiles.length) * 100);
 
             progress.style.width = percent + "%";
+            .length} dosya yüklendi`;
+
+        }
+
+        statusText.innerHTML =
+            "🎉 Tüm fotoğraf ve videolar başarıyla yüklendi. Teşekkür ederiz.";
+
+        progress.style.width = "100%";
+
+        fileInput.value = "";
+        preview.innerHTML = "";
+        selectedFiles = [];
+
+    } catch (error) {
+
+        console.error(error);
+
+        statusText.innerHTML =
+            "❌ Yükleme sırasında hata oluştu.";
+
+    }
+
+    uploadButton.disabled = false;
+
+});
 
             statusText.innerHTML =
                 `${uploaded} / ${selectedFiles
